@@ -7,5 +7,7 @@ add_executable(main src/main.cpp
     src/Ray.cpp
     src/Sphere.cpp
     src/World.cpp
+    src/Renderer.cpp
+    src/Image.cpp
 )
 target_include_directories(main PRIVATE "${CMAKE_SOURCE_DIR}/headers")

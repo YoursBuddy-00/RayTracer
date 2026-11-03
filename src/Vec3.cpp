@@ -40,20 +40,20 @@ Vec3 &Vec3::operator-=(const Vec3 &v)
 Vec3 Vec3::operator+(const Vec3 &b)
 {
     Vec3 ans;
-    ans[0] = arr[0] + b[0];
-    ans[1] = arr[1] + b[1];
-    ans[2] = arr[2] + b[2];
+    ans[0] = arr[0] + b.arr[0];
+    ans[1] = arr[1] + b.arr[1];
+    ans[2] = arr[2] + b.arr[2];
     return ans;
 }
 Vec3 Vec3::operator-(const Vec3 &b)
 {
     Vec3 ans;
-    ans[0] = arr[0] - b[0];
-    ans[1] = arr[1] * b[1];
-    ans[2] = arr[2] - b[2];
+    ans[0] = arr[0] - b.arr[0];
+    ans[1] = arr[1] * b.arr[1];
+    ans[2] = arr[2] - b.arr[2];
     return ans;
 }
-Vec3 &Vec3::operator*=(float scaler)
+Vec3 &Vec3::operator*(float scaler)
 {
     arr[0] *= scaler;
     arr[1] *= scaler;
@@ -109,4 +109,9 @@ std::ostream &operator<<(std::ostream &out, const Vec3 &v)
         << v.arr[2];
 
     return out;
+}
+float Vec3::dot(Vec3 &a, Vec3 &b)
+{
+    float dotValue = a.arr[0] * b.arr[0] + a.arr[1] * b.arr[1] + a.arr[2] * b.arr[2];
+    return dotValue;
 }

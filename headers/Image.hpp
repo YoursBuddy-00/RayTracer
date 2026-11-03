@@ -8,7 +8,7 @@ class Image
     int ImageHeight = ImageWidth * AspectRatio;
 
 public:
-    const static float AspectRatio = 9 / 16;
+    constexpr static float AspectRatio = 16.0f / 9.0f;
     Image();
     ~Image();
     int getImageWidth()

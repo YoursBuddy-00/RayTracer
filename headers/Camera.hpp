@@ -11,7 +11,7 @@ class Camera
     float ViewportWidth = ViewportHeight * aspectRatio;
 
 public:
-    static const float aspectRatio = 16 / 9;
+    static constexpr float aspectRatio = 16.0 / 9.0;
     Camera();
     Camera(float, float, float);
     Vec3 GetPosition();

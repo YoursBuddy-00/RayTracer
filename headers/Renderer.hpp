@@ -1,16 +1,13 @@
 #pragma once
 #include "World.hpp"
-#include "Ray.hpp"
 #include "Camera.hpp"
 #include "Image.hpp"
 
-class Render
+class Renderer
 {
     World world;
-    std::vector<Ray> r;
     Camera camera;
-    Image FinalImage;
 
 public:
-    Image RenderScene(World, Camera, Ray);
+    Image RenderScene(World, Camera);
 };

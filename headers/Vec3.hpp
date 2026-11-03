@@ -14,8 +14,9 @@ public:
     Vec3 &operator-=(const Vec3 &);
     Vec3 operator+(const Vec3 &);
     Vec3 operator-(const Vec3 &);
-    Vec3 &operator*=(float);
+    Vec3 &operator*(float);
     Vec3 &operator/=(float);
+    static float dot(Vec3 &a, Vec3 &b);
     friend std::ostream &operator<<(std::ostream &out, const Vec3 &v);
     Vec3 normal() const;
     float magnitude() const;

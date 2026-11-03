@@ -4,15 +4,14 @@ Ray::Ray()
 {
     std::cout << "Ray is Created\n";
 }
-Ray::Ray(float x, float y, float z)
+Ray::Ray(Vec3 origin, Vec3 direction)
 {
-    m_origin[0] = x;
-    m_origin[1] = y;
-    m_origin[2] = z;
+    m_origin = origin;
+    m_direction = direction;
 }
 Vec3 Ray::AtPointT(float t)
 {
-    return Vec3(1, 2, 3);
+    return m_origin + (m_direction * t);
 }
 Vec3 Ray::GetDirection()
 {

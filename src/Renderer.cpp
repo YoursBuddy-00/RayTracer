@@ -1,6 +1,8 @@
-#include "Render.hpp"
-#include "Image.hpp"
-Image Render::RenderScene(World w, Camera c, Ray r)
+#include "Renderer.hpp"
+#include "Sphere.hpp"
+#include "Ray.hpp"
+
+Image Renderer::RenderScene(World w, Camera c)
 {
     Image i;
     int x = i.getImageWidth();
@@ -28,6 +30,20 @@ Image Render::RenderScene(World w, Camera c, Ray r)
             float viewportY = (0.5f - v) * ViewportHeight;
 
             Vec3 pixelPosition = ViewportCenter + Vec3{viewportX, viewportY, 0};
+
+            Vec3 rayDir = (pixelPosition - c.GetPosition()).normal();
+
+            Ray r(CamPos, rayDir);
+
+            float hitSphere = hitSphere(CamPos, rayDir);
+
+            if ()
+            {
+                // The pixel Should be red
+            }
+            else
+            {
+                // The Pixel should be light blue
+            }
         }
     }
-}

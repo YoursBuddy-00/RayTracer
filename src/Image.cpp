@@ -8,7 +8,7 @@ Image::~Image()
 {
     std::cout << "Image is Destroyed\n";
 }
-void Image::SetPixel(int x, int y)
+void Image::SetPixel(int x, int y, Vec3 &c)
 {
     int r = 255.0f;
     int g = 0.0f;

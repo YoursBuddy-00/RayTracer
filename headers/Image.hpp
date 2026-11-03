@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Color.hpp"
+#include "Vec3.hpp"
 
 class Image
 {
@@ -24,6 +24,6 @@ public:
         ImageWidth = w;
         ImageHeight = h;
     };
-    void SetPixel(int, int);
+    void SetPixel(int, int, Vec3 &);
     void SaveImage();
 };

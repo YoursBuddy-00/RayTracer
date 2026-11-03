@@ -34,16 +34,20 @@ Image Renderer::RenderScene(World w, Camera c)
             Vec3 rayDir = (pixelPosition - c.GetPosition()).normal();
 
             Ray r(CamPos, rayDir);
+            Sphere s;
+            float hitSphere = s.hitSphere(CamPos, rayDir);
+            Vec3 color = {0, 0, 0};
 
-            float hitSphere = hitSphere(CamPos, rayDir);
-
-            if ()
+            if (hitSphere)
             {
-                // The pixel Should be red
+                color = {255, 0, 0};
             }
             else
             {
-                // The Pixel should be light blue
+                color = {255, 255, 0};
             }
+
+            i.SetPixel(viewportX, viewportY, color);
         }
     }
+}

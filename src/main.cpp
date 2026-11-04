@@ -10,9 +10,10 @@ int main()
     Camera camera;
     Renderer renderer;
 
-    Sphere a(5.04f, {1.0f, 0.0f, 10.0f});
-    Sphere b(3.0f, {5.0f, 2.0f, 8.0f});
-    Sphere c(15.0f, {-5.0f, -1.0f, 6.0f});
+    Sphere b(3.0f, {-35.0f,0.0f, 25.0});
+    Sphere a(7.0f, {0.0f,0.0f, 30.0f});
+    Sphere c(3.0f, {35.0f,0.0f, 25.0});
+    
 
     world.AddSphere(a);
     world.AddSphere(b);

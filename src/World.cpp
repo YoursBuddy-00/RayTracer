@@ -1,14 +1,12 @@
 #include "World.hpp"
 
-World::World(){
-    std::cout << "World is Created\n";
-}
+World::World(){}
 
 void World::AddSphere(Sphere &obj)
 {
     world.push_back(obj);
 }
 
-std::vector<Sphere> World::getWorldObj(){
+const std::vector<Sphere>& World::getWorldObj(){
         return world;
-    }
+}

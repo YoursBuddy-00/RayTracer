@@ -1,53 +1,62 @@
 #include "Renderer.hpp"
 #include "Sphere.hpp"
 #include "Ray.hpp"
+#include <iostream>
+#include <cmath>
 
-Image Renderer::RenderScene(World w, Camera c)
+void Renderer::RenderScene(World w, Camera c)
 {
-    Image i;
-    int x = i.getImageWidth();
-    int y = i.getImageHeight();
+    
+    int width = 256;
+    int height = 256;
 
     float focalLength = c.getFocalLenth();
     float fov = c.getFieldOfView();
-
     Vec3 CamPos = c.GetPosition();
 
-    // Viewport
-    float ViewportHeight = 2 * focalLength * (tan(fov * 0.5));
-    float ViewportWidth = ViewportHeight * Image::AspectRatio;
+
+    float viewportHeight = c.getheight();
+    float viewportWidth = c.getWidth();
+
     Vec3 distance = {0, 0, focalLength};
-    Vec3 ViewportCenter = CamPos + distance;
+    Vec3 viewportCenter = CamPos + distance;
 
-    for (int y = 0; y < i.getImageHeight(); y++)
+    std::cout << "P3\n"
+              << width << " " << height << "\n255\n";
+
+    for (int y = 0; y < height; y++)
     {
-        for (int x = 0; x < i.getImageWidth(); x++)
+        for (int x = 0; x < width; x++)
         {
-            float u = (x + 0.5f) / i.getImageWidth();
-            float v = (x + 0.5f) / i.getImageHeight();
+            float u = (x + 0.5f) / width;
+            float v = (y + 0.5f) / height;
 
-            float viewportX = (u - 0.5f) * ViewportWidth;
-            float viewportY = (0.5f - v) * ViewportHeight;
+            float viewportX = (u - 0.5f) * viewportWidth;
+            float viewportY = (0.5f - v) * viewportHeight;
 
-            Vec3 pixelPosition = ViewportCenter + Vec3{viewportX, viewportY, 0};
+            Vec3 pixelPosition =
+                viewportCenter + Vec3{viewportX, viewportY, 0};
 
-            Vec3 rayDir = (pixelPosition - c.GetPosition()).normal();
+            Vec3 rayDir = (pixelPosition - CamPos).normal();
 
-            Ray r(CamPos, rayDir);
-            Sphere s;
-            float hitSphere = s.hitSphere(CamPos, rayDir);
-            Vec3 color = {0, 0, 0};
+            // Default background: BLUE
+            int r = 0;
+            int g = 0;
+            int b = 0;
 
-            if (hitSphere)
+            for (const Sphere &s : w.getWorldObj())
             {
-                color = {255, 0, 0};
-            }
-            else
-            {
-                color = {255, 255, 0};
+                float t;
+
+                if (s.hitSphere(CamPos, rayDir))
+                {
+                    r = 255;
+                    g = 0;
+                    b = 0;
+                }
             }
 
-            i.SetPixel(viewportX, viewportY, color);
+            std::cout << r << " " << g << " " << b << "\n";
         }
     }
-}
+};

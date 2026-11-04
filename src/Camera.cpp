@@ -1,9 +1,7 @@
 #include "Camera.hpp"
 
 Camera::Camera()
-{
-    std::cout << "Camera Created\n";
-}
+{}
 
 Camera::Camera(float x, float y, float z)
 {
@@ -30,4 +28,10 @@ float Camera::getFieldOfView()
 float Camera::getFocalLenth()
 {
     return focalLength;
+}
+float Camera::getheight(){
+    return ViewportHeight;
+}
+float Camera::getWidth(){
+    return ViewportWidth;
 }

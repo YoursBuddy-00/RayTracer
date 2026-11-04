@@ -10,6 +10,8 @@ class Image
 public:
     constexpr static float AspectRatio = 16.0f / 9.0f;
     Image();
+    Image(int w,int h);
+
     ~Image();
     int getImageWidth()
     {
@@ -24,6 +26,6 @@ public:
         ImageWidth = w;
         ImageHeight = h;
     };
-    void SetPixel(int, int, Vec3 &);
+    void SetPixel(Vec3);
     void SaveImage();
 };

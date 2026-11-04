@@ -3,9 +3,7 @@
 #include <stdexcept>
 
 Vec3::Vec3()
-{
-    std::cout << "Vector is Created\n";
-}
+{}
 
 Vec3::Vec3(float x, float y, float z)
 {

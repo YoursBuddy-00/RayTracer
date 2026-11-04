@@ -2,18 +2,16 @@
 
 Image::Image()
 {
-    std::cout << "Image is Created\n";
 }
 Image::~Image()
-{
-    std::cout << "Image is Destroyed\n";
+{}
+Image::Image(int w,int h){
+    ImageWidth = w,ImageHeight=h;
 }
-void Image::SetPixel(int x, int y, Vec3 &c)
+void Image::SetPixel(Vec3 c)
 {
-    int r = 255.0f;
-    int g = 0.0f;
-    int b = 0.0f;
-    std::cout << r << " " << g << " " << b << "\n";
+
+    std::cout<<c;
 }
 void Image::SaveImage()
 {

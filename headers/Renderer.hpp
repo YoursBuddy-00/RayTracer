@@ -9,5 +9,5 @@ class Renderer
     Camera camera;
 
 public:
-    Image RenderScene(World, Camera);
+    void RenderScene(World, Camera);
 };

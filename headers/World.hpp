@@ -10,5 +10,5 @@ class World
 public:
     World();
     void AddSphere(Sphere &obj);
-    std::vector<Sphere> getWorldObj();
+    const std::vector<Sphere>& getWorldObj();
 };

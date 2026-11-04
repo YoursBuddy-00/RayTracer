@@ -1,13 +1,14 @@
 #pragma once
 #include "Vec3.hpp"
 
+
 class Camera
 {
-    Vec3 cameraPos = {0, 1, -10};
+    Vec3 cameraPos = {0, 0, -10};
     float focalLength = 10;
-    float fieldOfView = 60;
-    float ViewportHeight = 2 * focalLength * (tan(fieldOfView / 2));
-
+    float fieldOfView = 75;
+    float fov = fieldOfView * (M_PI / 180.0f);
+    float ViewportHeight = 2 * focalLength * (tan(fov / 2));
     float ViewportWidth = ViewportHeight * aspectRatio;
 
 public:
@@ -19,4 +20,6 @@ public:
     void setFocalLength(float);
     float getFocalLenth();
     float getFieldOfView();
+    float getheight();
+    float getWidth();
 };

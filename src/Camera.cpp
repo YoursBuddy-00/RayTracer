@@ -25,7 +25,7 @@ float Camera::getFieldOfView()
 {
     return fieldOfView;
 }
-float Camera::getFocalLenth()
+float Camera::getFocalLength()
 {
     return focalLength;
 }

@@ -14,13 +14,26 @@ Vec3 Sphere::getPosition()
 {
     return m_pos;
 }
-bool Sphere::hitSphere(Vec3 &origin, Vec3 &raydir)const
+bool Sphere::hitSphere(Vec3 &origin, Vec3 &raydir) const
 {
     Vec3 oc = origin - m_pos;
+
     float a = Vec3::dot(raydir, raydir);
-    float b = Vec3::dot(raydir * 2.0f, oc);
+    float b = 2.0f * Vec3::dot(raydir, oc);
     float c = Vec3::dot(oc, oc) - m_radius * m_radius;
 
-    float d = b * b - 4 * a * c;
-    return d>=0;
+    float d = b * b - 4.0f * a * c;
+
+    if (d < 0)
+        return false;
+
+    float sqrtD = sqrt(d);
+
+    float t1 = (-b - sqrtD) / (2.0f * a);
+    float t2 = (-b + sqrtD) / (2.0f * a);
+
+    if (t1 > 0.001f || t2 > 0.001f)
+        return true;
+
+    return false;
 }

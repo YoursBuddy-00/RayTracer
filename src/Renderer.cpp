@@ -7,10 +7,10 @@
 void Renderer::RenderScene(World w, Camera c)
 {
     
-    int width = 256;
-    int height = 256;
+    int imageWidth = 1920;
+    int imageHeight = 1080;
 
-    float focalLength = c.getFocalLenth();
+    float focalLength = c.getFocalLength();
     float fov = c.getFieldOfView();
     Vec3 CamPos = c.GetPosition();
 
@@ -22,14 +22,14 @@ void Renderer::RenderScene(World w, Camera c)
     Vec3 viewportCenter = CamPos + distance;
 
     std::cout << "P3\n"
-              << width << " " << height << "\n255\n";
+              << imageWidth << " " << imageHeight << "\n255\n";
 
-    for (int y = 0; y < height; y++)
+    for (int y = 0; y < imageHeight; y++)
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < imageWidth; x++)
         {
-            float u = (x + 0.5f) / width;
-            float v = (y + 0.5f) / height;
+            float u = (x + 0.5f) / imageWidth;
+            float v = (y + 0.5f) / imageHeight;
 
             float viewportX = (u - 0.5f) * viewportWidth;
             float viewportY = (0.5f - v) * viewportHeight;
@@ -39,20 +39,12 @@ void Renderer::RenderScene(World w, Camera c)
 
             Vec3 rayDir = (pixelPosition - CamPos).normal();
 
-            // Default background: BLUE
-            int r = 0;
-            int g = 0;
-            int b = 0;
-
-            for (const Sphere &s : w.getWorldObj())
+            float r = 0.0,g = 0.0,b= 0.0;  
+            for (Sphere s : w.getWorldObj())
             {
-                float t;
-
                 if (s.hitSphere(CamPos, rayDir))
                 {
                     r = 255;
-                    g = 0;
-                    b = 0;
                 }
             }
 

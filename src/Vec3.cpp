@@ -47,7 +47,7 @@ Vec3 Vec3::operator-(const Vec3 &b)
 {
     Vec3 ans;
     ans[0] = arr[0] - b.arr[0];
-    ans[1] = arr[1] * b.arr[1];
+    ans[1] = arr[1] - b.arr[1];
     ans[2] = arr[2] - b.arr[2];
     return ans;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Vec3.hpp"
+#include<cmath>
 
 
 class Camera
@@ -17,9 +18,9 @@ public:
     Camera(float, float, float);
     Vec3 GetPosition();
     void setFOV(float);
-    void setFocalLength(float);
-    float getFocalLenth();
     float getFieldOfView();
+    void setFocalLength(float);
+    float getFocalLength();
     float getheight();
     float getWidth();
 };

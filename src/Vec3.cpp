@@ -2,22 +2,69 @@
 #include "Vec3.hpp"
 #include <stdexcept>
 
-Vec3::Vec3()
+// Default constructor
+Vec3::Vec3() : arr{0.0f, 0.0f, 0.0f}
 {}
 
+// Parameterized constructor
 Vec3::Vec3(float x, float y, float z)
-{
-    arr[0] = x;
-    arr[1] = y;
-    arr[2] = z;
-}
+    : arr{x, y, z}
+{}
 
-float &Vec3::operator[](int i)
+// Index operator
+float& Vec3::operator[](int i)
 {
+    if (i < 0 || i >= 3)
+        throw std::out_of_range("Vec3 index out of range");
+
     return arr[i];
 }
 
-Vec3 &Vec3::operator+=(const Vec3 &v)
+// Addition
+Vec3 Vec3::operator+(const Vec3& b) const
+{
+    return Vec3(
+        arr[0] + b.arr[0],
+        arr[1] + b.arr[1],
+        arr[2] + b.arr[2]
+    );
+}
+
+// Subtraction
+Vec3 Vec3::operator-(const Vec3& b) const
+{
+    return Vec3(
+        arr[0] - b.arr[0],
+        arr[1] - b.arr[1],
+        arr[2] - b.arr[2]
+    );
+}
+
+// Scalar multiplication
+Vec3 Vec3::operator*(float scaler) const
+{
+    return Vec3(
+        arr[0] * scaler,
+        arr[1] * scaler,
+        arr[2] * scaler
+    );
+}
+
+// Scalar division
+Vec3 Vec3::operator/(float scaler) const
+{
+    if (scaler == 0.0f)
+        throw std::invalid_argument("Division by zero");
+
+    return Vec3(
+        arr[0] / scaler,
+        arr[1] / scaler,
+        arr[2] / scaler
+    );
+}
+
+// Addition assignment
+Vec3& Vec3::operator+=(const Vec3& v)
 {
     arr[0] += v.arr[0];
     arr[1] += v.arr[1];
@@ -26,7 +73,8 @@ Vec3 &Vec3::operator+=(const Vec3 &v)
     return *this;
 }
 
-Vec3 &Vec3::operator-=(const Vec3 &v)
+// Subtraction assignment
+Vec3& Vec3::operator-=(const Vec3& v)
 {
     arr[0] -= v.arr[0];
     arr[1] -= v.arr[1];
@@ -35,37 +83,11 @@ Vec3 &Vec3::operator-=(const Vec3 &v)
     return *this;
 }
 
-Vec3 Vec3::operator+(const Vec3 &b)
-{
-    Vec3 ans;
-    ans[0] = arr[0] + b.arr[0];
-    ans[1] = arr[1] + b.arr[1];
-    ans[2] = arr[2] + b.arr[2];
-    return ans;
-}
-Vec3 Vec3::operator-(const Vec3 &b)
-{
-    Vec3 ans;
-    ans[0] = arr[0] - b.arr[0];
-    ans[1] = arr[1] - b.arr[1];
-    ans[2] = arr[2] - b.arr[2];
-    return ans;
-}
-Vec3 &Vec3::operator*(float scaler)
-{
-    arr[0] *= scaler;
-    arr[1] *= scaler;
-    arr[2] *= scaler;
-
-    return *this;
-}
-
-Vec3 &Vec3::operator/=(float scaler)
+// Division assignment
+Vec3& Vec3::operator/=(float scaler)
 {
     if (scaler == 0.0f)
-    {
         throw std::invalid_argument("Division by zero");
-    }
 
     arr[0] /= scaler;
     arr[1] /= scaler;
@@ -74,42 +96,45 @@ Vec3 &Vec3::operator/=(float scaler)
     return *this;
 }
 
+// Magnitude
 float Vec3::magnitude() const
 {
     return std::sqrt(
         arr[0] * arr[0] +
         arr[1] * arr[1] +
-        arr[2] * arr[2]);
+        arr[2] * arr[2]
+    );
 }
 
+// Normalization
 Vec3 Vec3::normal() const
 {
     float mag = magnitude();
 
     if (mag == 0.0f)
-    {
         throw std::runtime_error("Cannot normalize zero vector");
-    }
 
-    Vec3 result;
-
-    result.arr[0] = arr[0] / mag;
-    result.arr[1] = arr[1] / mag;
-    result.arr[2] = arr[2] / mag;
-
-    return result;
+    return Vec3(
+        arr[0] / mag,
+        arr[1] / mag,
+        arr[2] / mag
+    );
 }
 
-std::ostream &operator<<(std::ostream &out, const Vec3 &v)
+// Dot product
+float Vec3::dot(const Vec3& a, const Vec3& b)
+{
+    return a.arr[0] * b.arr[0] +
+           a.arr[1] * b.arr[1] +
+           a.arr[2] * b.arr[2];
+}
+
+// Stream output
+std::ostream& operator<<(std::ostream& out, const Vec3& v)
 {
     out << v.arr[0] << " "
         << v.arr[1] << " "
         << v.arr[2];
 
     return out;
-}
-float Vec3::dot(Vec3 &a, Vec3 &b)
-{
-    float dotValue = a.arr[0] * b.arr[0] + a.arr[1] * b.arr[1] + a.arr[2] * b.arr[2];
-    return dotValue;
 }

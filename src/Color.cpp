@@ -1,9 +1,16 @@
 #include "Color.hpp"
 
-void Color::ColorPixel(int x,int y){
-        int r = 255;
-        int g = 255;
-        int b = 0;
+namespace Colors {
 
-        std::cout << r << " " << g << " " << b << "\n";
+    Color red(1.0, 0.0, 0.0);
+    Color black(0.0, 0.0, 0.0);
+    Color green(0.0, 1.0, 0.0);
+    Color blue(0.0, 0.0, 1.0);
+    Color yellow(1.0, 1.0, 0.0);
+    Color white(1.0, 1.0, 1.0);
+
+    Color MixColor(Color& a, Color& b)
+    {
+        return (a + b) / 2.0;
+    }
 }

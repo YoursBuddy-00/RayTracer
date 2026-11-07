@@ -1,8 +1,13 @@
 #pragma once
+#include "Vec3.hpp"
 
-#include<iostream>
 
-class Color{
-    public:
-    void ColorPixel(int x, int y);
-};
+namespace Colors{
+    extern Color red;
+    extern Color black;
+    extern Color green;
+    extern Color blue;
+    extern Color yellow;
+    extern Color white;
+    Color MixColor(Color& a,Color& b);
+}

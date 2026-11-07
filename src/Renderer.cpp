@@ -1,14 +1,15 @@
 #include "Renderer.hpp"
 #include "Sphere.hpp"
 #include "Ray.hpp"
+#include "Color.hpp"
 #include <iostream>
 #include <cmath>
 
 void Renderer::RenderScene(World w, Camera c)
 {
     
-    int imageWidth = 1920;
-    int imageHeight = 1080;
+    int imageWidth = 400;
+    int imageHeight = 225;
 
     float focalLength = c.getFocalLength();
     float fov = c.getFieldOfView();
@@ -39,16 +40,17 @@ void Renderer::RenderScene(World w, Camera c)
 
             Vec3 rayDir = (pixelPosition - CamPos).normal();
 
-            float r = 0.0,g = 0.0,b= 0.0;  
+            Color c =Colors::yellow*255.0;
+
             for (Sphere s : w.getWorldObj())
             {
                 if (s.hitSphere(CamPos, rayDir))
                 {
-                    r = 255;
+                    c = s.getColor() * 255.0;
+                    break;
                 }
             }
-
-            std::cout << r << " " << g << " " << b << "\n";
+            std::cout<<c<<std::endl;
         }
     }
 };

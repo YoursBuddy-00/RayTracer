@@ -1,21 +1,21 @@
 #include "Renderer.hpp"
+#include "Color.hpp"
 
+using namespace Colors;
 using namespace std;
-
 int main()
 {
+
     World world;
     Camera camera;
     Renderer renderer;
 
-    Sphere b(5.0f, {-35.0f,0.0f, 25.0});
-    Sphere a(10.0f, {0.0f,0.0f, 30.0f});
-    Sphere c(5.0f, {35.0f,0.0f, 25.0});
-    
+    Sphere s1(2.0f,{0.5,0.0,5.0},green);
+    Sphere s2(3.0f,{-0.5,0.0,5.0},blue);
 
-    world.AddSphere(a); 
-    world.AddSphere(b);
-    world.AddSphere(c);
+    world.AddSphere(s1);
+    world.AddSphere(s2);
+
 
     renderer.RenderScene(world,camera);
 

@@ -1,6 +1,11 @@
 #include "Camera.hpp"
 
 Camera::Camera()
+    : cameraPos(0, 0, 0),
+      focalLength(1.0f),
+      fieldOfView(90.0f),
+      ViewportHeight(2.0f),
+      ViewportWidth(3.55f)
 {}
 
 Camera::Camera(float x, float y, float z)
